@@ -1,21 +1,24 @@
-%define xrootdir	/usr/X11R6
+%define xrootdir	/usr
 %define xconfdir	/etc/X11
+%define name		wmnet
+%define version		1.06
+%define release		%mkrel 5
 
 Summary:		Applet that monitors the network
-Name:			wmnet
-Version:		1.06
-Release:		4mdk
+Name:			%{name}
+Version:		%{version}
+Release:		%{release}
 License:		GPL
 Group:			Graphical desktop/WindowMaker
-URL:			http://www.digitalkaos.net/linux/wmnet/
-Source0:		%{name}-%{version}.tar.bz2
-Source1:		%{name}.wmconfig.bz2
+URL:			http://dockapps.org/file.php/id/77
+Source0:		http://dockapps.org/download.php/id/115/%{name}-%{version}.tar.bz2
+Source1:		%{name}.wmconfig
 Source2:		wmnet-icons.tar.bz2
-Patch0:			wmnet-sa-restorer.patch.bz2
-Patch1:			wmnet-1.05-man-graph.patch.bz2
-Patch2:			wmnet-1.05-glibc22.patch.bz2
+Patch0:			wmnet-sa-restorer.patch
+Patch1:			wmnet-1.05-man-graph.patch
+Patch2:			wmnet-1.05-glibc22.patch
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:		XFree86-devel X11
+BuildRequires:		libx11-devel libxext-devel
 
 %description 
 Wmnet uses ip accounting in the Linux kernel
@@ -35,46 +38,59 @@ xmkmf
 rm -fr $RPM_BUILD_ROOT
 
 # wmnet standard install
-install -d %buildroot/%xrootdir/bin
-install -d %buildroot/%xrootdir/man/man1
-install -m 755 -s wmnet %buildroot/%xrootdir/bin
-install -m 644 wmnet.man %buildroot/%xrootdir/man/man1/wmnet.1
+install -d %buildroot/%_bindir
+install -d %buildroot/%_mandir/man1
+install -m 755 -s wmnet %buildroot/%_bindir
+install -m 644 wmnet.man %buildroot/%_mandir/man1/wmnet.1
 
 # wmaker config file
 install -d %buildroot/%xconfdir/wmconfig
-bzcat %{SOURCE1} > %buildroot/%xconfdir/wmconfig/%name
+cp %{SOURCE1} %buildroot/%xconfdir/wmconfig/%name
 
-# mdk menu icons
-mkdir -p %buildroot/%_iconsdir
+# mdv menu icons
+mkdir -p %buildroot/%_iconsdir/hicolor/{16x16,32x32,48x48}/apps
 tar jxvf %{SOURCE2} -C %buildroot/%_iconsdir
+# fd.o icons
+cp %buildroot/%_iconsdir/%name.png %buildroot/%_iconsdir/hicolor/32x32/apps/%{name}.png
+cp %buildroot/%_liconsdir/%name.png %buildroot/%_iconsdir/hicolor/48x48/apps/%{name}.png
+cp %buildroot/%_miconsdir/%name.png %buildroot/%_iconsdir/hicolor/16x16/apps/%{name}.png
 
-# mdk menu entry
-install -d %buildroot/%_menudir
-cat << EOF > %buildroot/%_menudir/%name
-?package(%{name}): \
-    command="%{xrootdir}/bin/wmnet" \
-    icon="wmnet.png" \
-    needs="x11" \
-    section="Applications/Monitoring" \
-    title="WMnet" \
-    longtitle="A little X doc.app network monitor"
+# mdv menu entry
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=WMnet
+Comment=A WindowMaker dock network monitor
+Exec=%{_bindir}/%{name} 
+Icon=%{name}
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=System;Monitor;X-MandrivaLinux-System-Monitoring;
 EOF
 
 %post
 %update_menus
+%update_icon_cache hicolor
 
 %postun
 %clean_menus
+%clean_icon_cache hicolor
 
 %files
-%attr(-,root,root)	%doc README Changelog
-%attr(644,root,root)	%config(noreplace) %{xconfdir}/wmconfig/%{name}
-%attr(755,root,root)	%{xrootdir}/bin/wmnet
-%attr(644,root,root)	%{xrootdir}/man/man1/wmnet.1*
-%attr(644,root,root)	%{_menudir}/%{name}
-%attr(644,root,root)	%{_iconsdir}/%{name}*
-%attr(644,root,root)	%{_liconsdir}/%{name}*
-%attr(644,root,root)	%{_miconsdir}/%{name}*
+%attr(-,root,root)	
+%doc README Changelog
+%config(noreplace) %{xconfdir}/wmconfig/%{name}
+%{_bindir}/wmnet
+%{_mandir}/man1/wmnet.1*
+%{_datadir}/applications/mandriva-%{name}.desktop
+%{_iconsdir}/%{name}.png
+%{_liconsdir}/%{name}.png
+%{_miconsdir}/%{name}.png
+%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+%{_iconsdir}/hicolor/48x48/apps/%{name}.png
 
 %clean
 rm -r $RPM_BUILD_ROOT
