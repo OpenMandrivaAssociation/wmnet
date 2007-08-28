@@ -59,7 +59,6 @@ cp %buildroot/%_miconsdir/%name.png %buildroot/%_iconsdir/hicolor/16x16/apps/%{n
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
 [Desktop Entry]
-Encoding=UTF-8
 Name=WMnet
 Comment=A WindowMaker dock network monitor
 Exec=%{_bindir}/%{name} 
