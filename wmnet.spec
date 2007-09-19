@@ -2,7 +2,7 @@
 %define xconfdir	/etc/X11
 %define name		wmnet
 %define version		1.06
-%define release		%mkrel 5
+%define release		%mkrel 6
 
 Summary:		Applet that monitors the network
 Name:			%{name}
