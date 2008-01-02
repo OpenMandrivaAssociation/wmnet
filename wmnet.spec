@@ -17,6 +17,7 @@ Source2:		wmnet-icons.tar.bz2
 Patch0:			wmnet-sa-restorer.patch
 Patch1:			wmnet-1.05-man-graph.patch
 Patch2:			wmnet-1.05-glibc22.patch
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:		libx11-devel libxext-devel imake
 
 %description 
