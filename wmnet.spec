@@ -2,12 +2,11 @@
 %define xconfdir	/etc/X11
 %define name		wmnet
 %define version		1.06
-%define release		%mkrel 6
 
 Summary:		Applet that monitors the network
 Name:			%{name}
 Version:		%{version}
-Release:		%{release}
+Release:		%mkrel 7
 License:		GPL
 Group:			Graphical desktop/WindowMaker
 URL:			http://dockapps.org/file.php/id/77
