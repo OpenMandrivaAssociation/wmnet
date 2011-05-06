@@ -6,7 +6,7 @@
 Summary:		Applet that monitors the network
 Name:			%{name}
 Version:		%{version}
-Release:		%mkrel 10
+Release:		%mkrel 11
 License:		GPL
 Group:			Graphical desktop/WindowMaker
 URL:			http://dockapps.org/file.php/id/77
