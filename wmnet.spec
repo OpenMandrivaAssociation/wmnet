@@ -34,7 +34,7 @@ xmkmf
 %make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
-rm -fr $RPM_BUILD_ROOT
+rm -fr %{buildroot}
 
 # wmnet standard install
 install -d %buildroot/%_bindir
@@ -95,4 +95,4 @@ EOF
 %{_iconsdir}/hicolor/48x48/apps/%{name}.png
 
 %clean
-rm -r $RPM_BUILD_ROOT
+rm -r %{buildroot}
