@@ -1,0 +1,13 @@
+diff -urN wmnet-1.05.orig/wmnet.c wmnet-1.05/wmnet.c
+--- wmnet-1.05.orig/wmnet.c	Fri Oct  9 21:02:52 1998
++++ wmnet-1.05/wmnet.c	Fri Feb  9 13:03:38 2001
+@@ -340,9 +340,6 @@
+ 	signal_action.sa_handler = got_signal;
+ 	sigemptyset(&signal_action.sa_mask);
+ 	signal_action.sa_flags = (SA_NOCLDSTOP|SA_RESTART);
+-#ifdef linux
+-	signal_action.sa_restorer = NULL;
+-#endif
+ 	if ((sigaction(SIGCHLD, &signal_action, NULL) == -1) ||
+ 	    (sigaction(SIGINT, &signal_action, NULL) == -1) ||
+ 	    (sigaction(SIGTERM, &signal_action, NULL) == -1)) {

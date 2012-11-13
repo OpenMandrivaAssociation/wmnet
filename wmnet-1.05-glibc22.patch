@@ -1,0 +1,21 @@
+--- wmnet-1.05/wmnet.c.glibc22	Tue Aug  7 09:42:31 2001
++++ wmnet-1.05/wmnet.c	Tue Aug  7 09:55:13 2001
+@@ -281,14 +281,14 @@
+                                        "  -L, --label=LABEL        display LABEL on bottom of window\n"
+                                        "  -F, --labelfg=COLOR      foreground color for the label\n"
+                                        "  -B, --labelbg=COLOR      background color for the label\n"
+-                                       "  -e, --execute=COMMAND    run COMMAND on click\n"
++					   "  -e, --execute=COMMAND    run COMMAND on click\n");
+ #ifdef linux
+-				       "  -T, --txrule=RULE        accounting rule number (ipfwadm) or\n"
++				printf("  -T, --txrule=RULE        accounting rule number (ipfwadm) or\n"
+ 				       "                           IP chain name (ipchains) to monitor for tx\n"
+ 				       "  -R, --rxrule=RULE        accounting rule number (ipfwadm) or\n"
+-				       "                           IP chain name (ipchains) to monitor for rx\n"
++				       "                           IP chain name (ipchains) to monitor for rx\n");
+ #endif
+-				       "  -W, --device=DEVICE      monitor DEVICE for stats (devstats,kmem,pppstats)\n"
++				printf("  -W, --device=DEVICE      monitor DEVICE for stats (devstats,kmem,pppstats)\n"
+                                        "  -w, --withdrawn          start up in withdrawn state\n"
+                                        "  -n, --normalstate        start up in normal, shaped state\n"
+ 				       "  -t, --txcolor=COLOR      color for tx\n"
