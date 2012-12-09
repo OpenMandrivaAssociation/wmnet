@@ -1,0 +1,4 @@
+wmnet name "Wmnet"
+wmnet description "Network Monitoring Applet"
+wmnet exec "wmnet &"
+wmnet group "Dock Applets"
