@@ -4,7 +4,7 @@
 Summary:	Applet that monitors the network
 Name:		wmnet
 Version:	1.06
-Release:	13
+Release:	14
 License:	GPL
 Group:		Graphical desktop/WindowMaker
 URL:		http://dockapps.org/file.php/id/77
