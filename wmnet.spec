@@ -7,7 +7,7 @@ Version:	1.06
 Release:	14
 License:	GPL
 Group:		Graphical desktop/WindowMaker
-URL:		http://dockapps.org/file.php/id/77
+URL:		https://dockapps.org/file.php/id/77
 Source0:	http://dockapps.org/download.php/id/115/%{name}-%{version}.tar.bz2
 Source1:	%{name}.wmconfig
 Source2:	wmnet-icons.tar.bz2
